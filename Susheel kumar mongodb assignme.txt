@@ -1,0 +1,1374 @@
+Name: Susheel Kumar
+
+MongoDB Lab Assignments -Day 1
+
+MongoDB Exercise in mongo shell 
+Connect to a running mongo instance, use a database named mongo_practice. Document all your queries in a javascript file to use as a reference.
+
+Ans- Microsoft Windows [Version 10.0.19043.1415]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\SUSHEKUM\Desktop\MongoDB assigment\mongosh-1.1.7-win32-x64\bin>mongosh "mongodb+srv://cluster0.zzcj2.mongodb.net/myFirstDatabase" --username SUSHEKUM
+Enter password: ********
+Current Mongosh Log ID: 61dae58d0ded71bfb61b8445
+Connecting to:          mongodb+srv://cluster0.zzcj2.mongodb.net/myFirstDatabase
+Using MongoDB:          4.4.10
+Using Mongosh:          1.1.7
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+Atlas atlas-gbsmro-shard-0 [primary] myFirstDatabase> show dbs
+Pollution           1.67 MB
+mongo_practice      73.7 kB
+myfirstdatabase     8.19 kB
+sample_restaurants  8.27 MB
+admin                336 kB
+local                4.1 GB
+Atlas atlas-gbsmro-shard-0 [primary] myFirstDatabase> use mongo_practice
+
+
+
+
+
+
+
+
+
+
+
+
+
+Insert Documents
+
+Insert the following documents into a movies collection.
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  > mongodb_practice> db.createCollection('movies')
+{ ok: 1 }
+Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> show collections
+movies
+
+
+ 
+ 
+ 
+
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.movies.insertMany([{title:'Fight Club', writer: 'Chuck PalahniAtlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.movies.insertMany([{title:'Fight Club', writer: 'Chuck PalahniAtlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.movies.insertMany([{title:'Fight Club', writer: 'Chuck Palahniuko', year:1999, actors:['Brad Pitt','Edwrd Norton']}, {title:'Pulp Fiction',writer:'Quentin Tarantino',year:1994,actors:['John Travolta','Uma Thurman']},{title: 'Inglorious Basterds', writer: 'Quentin Tarantino', year: 2009, actors: ['Brad Pitt','Diane Kruger','Eli Roth']}, {title: 'The Hobbit: An Unexpected Journey', writer: 'J.R.R Tolkein', year: 2012, franchise: 'The Hobbit'}, {title: 'The Hobbit: The Desolation of Smaug', writer: 'J.R.R Tolkein', year: 2013, franchise: 'The Hobbit'}, {title: 'The Hobbit: The Battle of the Five Armies', writer: 'J.R.R Tolkein', year: 2012, franchise: 'The Hobbit', synopsis: 'Bilbo and Company are forced to engage in a war against array of combatants and keep the Lonely Mountain from falling into the hands of a rising darkness'}, {title:"Pee Wee Herman's Big Adventure"},{title: 'Avatar'}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("61daaa6efe12c3f0cacd55ec"),
+    '1': ObjectId("61daaa6efe12c3f0cacd55ed"),
+    '2': ObjectId("61daaa6efe12c3f0cacd55ee"),
+    '3': ObjectId("61daaa6efe12c3f0cacd55ef"),
+    '4': ObjectId("61daaa6efe12c3f0cacd55f0"),
+    '5': ObjectId("61daaa6efe12c3f0cacd55f1"),
+    '6': ObjectId("61daaa6efe12c3f0cacd55f2"),
+    '7': ObjectId("61daaa6efe12c3f0cacd55f3")
+  }
+}
+
+
+Query / Find Documents
+
+query the movies collection to
+1.	get all documents
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.movies.find()
+[
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55ec"),
+    title: 'Fight Club',
+    writer: 'Chuck Palahniuko',
+    year: 1999,
+    actors: [ 'Brad Pitt', 'Edwrd Norton' ]
+  },
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55ed"),
+    title: 'Pulp Fiction',
+    writer: 'Quentin Tarantino',
+    year: 1994,
+    actors: [ 'John Travolta', 'Uma Thurman' ]
+  },
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55ee"),
+    title: 'Inglorious Basterds',
+    writer: 'Quentin Tarantino',
+    year: 2009,
+    actors: [ 'Brad Pitt', 'Diane Kruger', 'Eli Roth' ]
+  },
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55ef"),
+    title: 'The Hobbit: An Unexpected Journey',
+   writer: 'J.R.R Tolkein',
+    year: 2012,
+    franchise: 'The Hobbit'
+  },
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55f0"),
+    title: 'The Hobbit: The Desolation of Smaug',
+    writer: 'J.R.R Tolkein',
+    year: 2013,
+    franchise: 'The Hobbit'
+  },
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55f1"),
+    title: 'The Hobbit: The Battle of the Five Armies',
+    writer: 'J.R.R Tolkein',
+    year: 2012,
+    franchise: 'The Hobbit',
+    synopsis: 'Bilbo and Company are forced to engage in a war against array of combatants and keep the Lonely Mountain from falling into the hands of a rising darkness'
+  },
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55f2"),
+    title: "Pee Wee Herman's Big Adventure"
+  },
+  { _id: ObjectId("61daaa6efe12c3f0cacd55f3"), title: 'Avatar' }
+]
+
+2.	get all documents with writer set to "Quentin Tarantino"
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.movies.find({writer:"Quentin Tarantino"})
+[
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55ed"),
+    title: 'Pulp Fiction',
+    writer: 'Quentin Tarantino',
+    year: 1994,
+    actors: [ 'John Travolta', 'Uma Thurman' ]
+  },
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55ee"),
+    title: 'Inglorious Basterds',
+    writer: 'Quentin Tarantino',
+    year: 2009,
+    actors: [ 'Brad Pitt', 'Diane Kruger', 'Eli Roth' ]
+  }
+]
+3.	get all documents where actors include "Brad Pitt"
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.movies.find({actors:"Brad Pitt"})
+[
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55ec"),
+    title: 'Fight Club',
+    writer: 'Chuck Palahniuko',
+    year: 1999,
+    actors: [ 'Brad Pitt', 'Edwrd Norton' ]
+  },
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55ee"),
+    title: 'Inglorious Basterds',
+    writer: 'Quentin Tarantino',
+    year: 2009,
+    actors: [ 'Brad Pitt', 'Diane Kruger', 'Eli Roth' ]
+  }
+]
+
+4.	get all documents with franchise set to "The Hobbit"
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.movies.find({franchise:"The Hobbit"})
+[
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55ef"),
+    title: 'The Hobbit: An Unexpected Journey',
+    writer: 'J.R.R Tolkein',
+    year: 2012,
+    franchise: 'The Hobbit'
+  },
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55f0"),
+    title: 'The Hobbit: The Desolation of Smaug',
+    writer: 'J.R.R Tolkein',
+    year: 2013,
+    franchise: 'The Hobbit'
+  },
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55f1"),
+    title: 'The Hobbit: The Battle of the Five Armies',
+    writer: 'J.R.R Tolkein',
+    year: 2012,
+    franchise: 'The Hobbit',
+    synopsis: 'Bilbo and Company are forced to engage in a war against array of combatants and keep the Lonely Mountain from falling into the hands of a rising darkness'
+  }
+]
+5.	get all movies released in the 90s
+
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.movies.find({year:{$gt:1990, $lt:2000}})
+[
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55ec"),
+    title: 'Fight Club',
+    writer: 'Chuck Palahniuko',
+    year: 1999,
+    actors: [ 'Brad Pitt', 'Edwrd Norton' ]
+  },
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55ed"),
+    title: 'Pulp Fiction',
+    writer: 'Quentin Tarantino',
+    year: 1994,
+    actors: [ 'John Travolta', 'Uma Thurman' ]
+  }
+]
+6.	get all movies released before the year 2000 or after 2010
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.movies.find({$or:[{year:{$gt:2010}},{year: {$lt:2000}}]})
+[
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55ec"),
+    title: 'Fight Club',
+    writer: 'Chuck Palahniuko',
+    year: 1999,
+    actors: [ 'Brad Pitt', 'Edwrd Norton' ]
+  },
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55ed"),
+    title: 'Pulp Fiction',
+    writer: 'Quentin Tarantino',
+    year: 1994,
+    actors: [ 'John Travolta', 'Uma Thurman' ]
+  },
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55ef"),
+    title: 'The Hobbit: An Unexpected Journey',
+    writer: 'J.R.R Tolkein',
+    year: 2012,
+    franchise: 'The Hobbit'
+  },
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55f0"),
+    title: 'The Hobbit: The Desolation of Smaug',
+    writer: 'J.R.R Tolkein',
+    year: 2013,
+    franchise: 'The Hobbit'
+  },
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55f1"),
+    title: 'The Hobbit: The Battle of the Five Armies',
+    writer: 'J.R.R Tolkein',
+    year: 2012,
+    franchise: 'The Hobbit',
+    synopsis: 'Bilbo and Company are forced to engage in a war against array of combatants and keep the Lonely Mountain from falling into the hands of a rising darkness'
+  }
+]
+Reference: https://www.tutorialspoint.com/mongodb/mongodb_query_document.htm
+
+Update Documents
+
+1.	add a synopsis to "The Hobbit: An Unexpected Journey" : "A reluctant hobbit, Bilbo Baggins, sets out to the Lonely Mountain with a spirited group of dwarves to reclaim their mountain home - and the gold within it - from the dragon Smaug."
+
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.movies.update({title:'The Hobbit: An Unexpected Journey'}, {$set:{synopsis:"A reluctant hobbit, Bilbo Baggins, sets out to the Lonely Mountain with a spirited group of dwarves to reclaim their mountain home - and the gold within it - from the dragon Smaug."}})
+DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+  2.add a synopsis to "The Hobbit: The Desolation of Smaug" : "The dwarves, along with Bilbo Baggins and Gandalf the Grey, continue their quest to reclaim Erebor, their homeland, from Smaug. Bilbo Baggins is in possession of a mysterious and magical ring."
+
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.movies.update({title:'The Hobbit: The Desolation of Smaug'}, {$set:{synopsis:"The dwarves, along with Bilbo Baggins and Gandalf the Grey, continue their quest to reclaim Erebor, their homeland, from Smaug. Bilbo Baggins is in possession of a mysterious and magical ring."}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+} 
+2.	add an actor named "Samuel L. Jackson" to the movie "Pulp Fiction"
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.movies.update({title:'Pulp Fiction'}, {$push:{actors:"Samuel L. Jackson"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Reference: https://www.tutorialspoint.com/mongodb/mongodb_update_document.htm
+
+Text Search
+
+1.	find all movies that have a synopsis that contains the word "Bilbo"
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.movies.find({synopsis:{$regex:"Bilbo"}})
+[
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55ef"),
+    title: 'The Hobbit: An Unexpected Journey',
+    writer: 'J.R.R Tolkein',
+    year: 2012,
+    franchise: 'The Hobbit',
+    synopsis: 'A reluctant hobbit, Bilbo Baggins, sets out to the Lonely Mountain with a spirited group of dwarves to reclaim their mountain home - and the gold within it - from the dragon Smaug.'
+  },
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55f0"),
+    title: 'The Hobbit: The Desolation of Smaug',
+    writer: 'J.R.R Tolkein',
+    year: 2013,
+    franchise: 'The Hobbit',
+    synopsis: 'The dwarves, along with Bilbo Baggins and Gandalf the Grey, continue their quest to reclaim Erebor, their homeland, from Smaug. Bilbo Baggins is in possession of a mysterious and magical ring.'
+  },
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55f1"),
+    title: 'The Hobbit: The Battle of the Five Armies',
+    writer: 'J.R.R Tolkein',
+    year: 2012,
+    franchise: 'The Hobbit',
+    synopsis: 'Bilbo and Company are forced to engage in a war against array of combatants and keep the Lonely Mountain from falling into the hands of a rising darkness'
+  }
+]
+
+2.	find all movies that have a synopsis that contains the word "Gandalf"
+
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.movies.find({synopsis:{$regex:"Gandalf"}})
+[
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55f0"),
+    title: 'The Hobbit: The Desolation of Smaug',
+    writer: 'J.R.R Tolkein',
+    year: 2013,
+    franchise: 'The Hobbit',
+    synopsis: 'The dwarves, along with Bilbo Baggins and Gandalf the Grey, continue their quest to reclaim Erebor, their homeland, from Smaug. Bilbo Baggins is in possession of a mysterious and magical ring.'
+  }
+]
+3.	find all movies that have a synopsis that contains the word "Bilbo" and not the word "Gandalf"
+
+
+Ans- atlas-ojy0k0-shard-0 [primary] mongodb_practice> db.movies.find({$and:[{synopsis:{$regex:"Bilbo"}}, {synopsis:{$no$not:/Gandalf/}}]})
+[
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55ef"),
+    title: 'The Hobbit: An Unexpected Journey',
+    writer: 'J.R.R Tolkein',
+    year: 2012,
+    franchise: 'The Hobbit',
+    synopsis: 'A reluctant hobbit, Bilbo Baggins, sets out to the Lonely Mountain with a spirited group of dwarves to reclaim their mountain home - and the gold within it - from the dragon Smaug.'
+  },
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55f1"),
+    title: 'The Hobbit: The Battle of the Five Armies',
+    writer: 'J.R.R Tolkein',
+    year: 2012,
+    franchise: 'The Hobbit',
+    synopsis: 'Bilbo and Company are forced to engage in a war against array of combatants and keep the Lonely Mountain from falling into the hands of a rising darkness'
+  }
+]
+4.	find all movies that have a synopsis that contains the word "dwarves" or "hobbit"
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.movies.find({$or:[{synopsis:{$regex:"dwarves"}}, {synopsis:{$regex:"hobbit"}}]})
+[
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55ef"),
+    title: 'The Hobbit: An Unexpected Journey',
+    writer: 'J.R.R Tolkein',
+    year: 2012,
+    franchise: 'The Hobbit',
+    synopsis: 'A reluctant hobbit, Bilbo Baggins, sets out to the Lonely Mountain with a spirited group of dwarves to reclaim their mountain home - and the gold within it - from the dragon Smaug.'
+  },
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55f0"),
+    title: 'The Hobbit: The Desolation of Smaug',
+    writer: 'J.R.R Tolkein',
+    year: 2013,
+    franchise: 'The Hobbit',
+    synopsis: 'The dwarves, along with Bilbo Baggins and Gandalf the Grey, continue their quest to reclaim Erebor, their homeland, from Smaug. Bilbo Baggins is in possession of a mysterious and magical ring.'
+  }
+]
+5.	find all movies that have a synopsis that contains the word "gold" and "dragon"
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.movies.find({$and:[{synopsis:{$regex:"gold"}}, {synopsis:{$regex:"dragon"}}]})
+[
+  {
+    _id: ObjectId("61daaa6efe12c3f0cacd55ef"),
+    title: 'The Hobbit: An Unexpected Journey',
+    writer: 'J.R.R Tolkein',
+    year: 2012,
+    franchise: 'The Hobbit',
+    synopsis: 'A reluctant hobbit, Bilbo Baggins, sets out to the Lonely Mountain with a spirited group of dwarves to reclaim their mountain home - and the gold within it - from the dragon Smaug.'
+  }
+]
+Reference: https://www.tutorialspoint.com/mongodb/mongodb_text_search.htm
+
+Delete Documents
+
+1.	delete the movie "Pee Wee Herman's Big Adventure"
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.movies.remove({title:"Pee Wee Herman's Big Adventure"})
+DeprecationWarning: Collection.remove() is deprecated. Use deleteOne, deleteMany, findOneAndDelete, or bulkWrite.
+{ acknowledged: true, deletedCount: 1 }
+2.	delete the movie "Avatar"
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.movies.remove({title:"Avatar"})
+{ acknowledged: true, deletedCount: 1 }
+Reference: https://www.tutorialspoint.com/mongodb/mongodb_delete_document.htm
+
+Relationships
+
+Insert the following documents into a users collection
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.createCollection('users')
+{ ok: 1 }
+Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.users.insertMany([{ username: 'GoodGuyGreg', first_name: 'GoodGuy', last_name: 'Greg' },{ username: 'ScumbagSteve', fullname: { first: 'Scumbag', last: 'Steve' }}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("61dab4b3fe12c3f0cacd55f4"),
+    '1': ObjectId("61dab4b3fe12c3f0cacd55f5")
+  }
+}
+
+Insert the following documents into a posts collection
+ 
+ 
+
+
+
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.createCollection('posts')
+{ ok: 1 }
+
+Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.posts.insertMany([{username: 'GoodGuyGreg', title: 'Passes out at party', body: 'Wakes up early and cleans house'},{username: 'GoodGuyGreg', title: 'Steals your identity', body: 'Raises your credit score'},{username: 'GoodGuyGreg', title: 'Reports a bug in your code', body: 'Sends you a pull request'},{username: 'ScumbagSteve', title: 'Borrows something', body: 'Sells it'},{username: 'ScumbagSteve', title: 'Borrows everything', body: 'The end'},{username: 'ScumbagSteve', title: 'Forks your repo in github', body: 'Sets to private'}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("61dab5e9fe12c3f0cacd55f6"),
+    '1': ObjectId("61dab5e9fe12c3f0cacd55f7"),
+    '2': ObjectId("61dab5e9fe12c3f0cacd55f8"),
+    '3': ObjectId("61dab5e9fe12c3f0cacd55f9"),
+    '4': ObjectId("61dab5e9fe12c3f0cacd55fa"),
+    '5': ObjectId("61dab5e9fe12c3f0cacd55fb")
+  } 
+Insert the following documents into a comments collection
+
+
+where [post_obj_id] is the ObjectId of the posts document: "Borrows something"
+
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.createCollection('comments')
+{ ok: 1 }
+
+Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.comments.insert({username:'GoodGuyGreg', comment: 'Hope you got a good deal!', post:ObjectId("61da896cf1e258629fdd6f5f")})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("61dab6a5fe12c3f0cacd55fc") }
+}
+
+where [post_obj_id] is the ObjectId of the posts document: "Borrows everything"
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.comments.insert({username:'GoodGuyGreg', comment: 'Hope you got a good deal!', post:ObjectId("61da896cf1e258629fdd6f5f")})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("61dab6a5fe12c3f0cacd55fc") }
+}
+
+where [post_obj_id] is the ObjectId of the posts document: "Forks your repo on github
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.comments.insert(
+...  {username: 'GoodGuyGreg', comment: "What's mine is yours!", post:ObjectId("61da896cf1e258629fdd6f60")})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("61dab6defe12c3f0cacd55fd") }
+}
+
+where [post_obj_id] is the ObjectId of the posts document: "Passes out at party"
+
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.comments.insert({username: 'ScumbagSteve', comment: "It still isn't clean", post:ObjectId("61da896cf1e258629fdd6f5c")})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("61dab70bfe12c3f0cacd55fe") }
+} 
+
+ 
+where [post_obj_id] is the ObjectId of the posts document: "Reports a bug in your
+code"
+
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.comments.insert({username: 'ScumbagSteve', comment: "Denied your PR cause I found a hack",post:ObjectId("61da896cf1e258629fdd6f5e")})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("61dab731fe12c3f0cacd55ff") }
+}
+Querying related collections
+
+1.	find all users
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.users.find().pretty()
+[
+  {
+    _id: ObjectId("61dab4b3fe12c3f0cacd55f4"),
+    username: 'GoodGuyGreg',
+    first_name: 'GoodGuy',
+    last_name: 'Greg'
+  },
+  {
+    _id: ObjectId("61dab4b3fe12c3f0cacd55f5"),
+    username: 'ScumbagSteve',
+    fullname: { first: 'Scumbag', last: 'Steve' }
+  }
+]
+2.	find all posts
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.posts.find().pretty()
+[
+  {
+    _id: ObjectId("61dab5e9fe12c3f0cacd55f6"),
+    username: 'GoodGuyGreg',
+    title: 'Passes out at party',
+    body: 'Wakes up early and cleans house'
+  },
+  {
+    _id: ObjectId("61dab5e9fe12c3f0cacd55f7"),
+    username: 'GoodGuyGreg',
+    title: 'Steals your identity',
+    body: 'Raises your credit score'
+  },
+  {
+    _id: ObjectId("61dab5e9fe12c3f0cacd55f8"),
+    username: 'GoodGuyGreg',
+    title: 'Reports a bug in your code',
+    body: 'Sends you a pull request'
+  },
+  {
+    _id: ObjectId("61dab5e9fe12c3f0cacd55f9"),
+    username: 'ScumbagSteve',
+    title: 'Borrows something',
+    body: 'Sells it'
+  },
+  {
+    _id: ObjectId("61dab5e9fe12c3f0cacd55fa"),
+    username: 'ScumbagSteve',
+    title: 'Borrows everything',
+    body: 'The end'
+  },
+  {
+    _id: ObjectId("61dab5e9fe12c3f0cacd55fb"),
+    username: 'ScumbagSteve',
+    title: 'Forks your repo in github',
+    body: 'Sets to private'
+  }
+]
+3.	find all posts that was authored by "GoodGuyGreg"
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.posts.find({username:"GoodGuyGreg"})
+[
+  {
+    _id: ObjectId("61dab5e9fe12c3f0cacd55f6"),
+    username: 'GoodGuyGreg',
+    title: 'Passes out at party',
+    body: 'Wakes up early and cleans house'
+  },
+  {
+    _id: ObjectId("61dab5e9fe12c3f0cacd55f7"),
+    username: 'GoodGuyGreg',
+    title: 'Steals your identity',
+    body: 'Raises your credit score'
+  },
+  {
+    _id: ObjectId("61dab5e9fe12c3f0cacd55f8"),
+    username: 'GoodGuyGreg',
+    title: 'Reports a bug in your code',
+    body: 'Sends you a pull request'
+  }
+]
+4.	find all posts that was authored by "ScumbagSteve"
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.posts.find({username:"ScumbagSteve"})
+[
+  {
+    _id: ObjectId("61dab5e9fe12c3f0cacd55f9"),
+    username: 'ScumbagSteve',
+    title: 'Borrows something',
+    body: 'Sells it'
+  },
+  {
+    _id: ObjectId("61dab5e9fe12c3f0cacd55fa"),
+    username: 'ScumbagSteve',
+    title: 'Borrows everything',
+    body: 'The end'
+  },
+  {
+    _id: ObjectId("61dab5e9fe12c3f0cacd55fb"),
+    username: 'ScumbagSteve',
+    title: 'Forks your repo in github',
+    body: 'Sets to private'
+  }
+]
+5.	find all comments
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.comments.find().pretty()
+[
+  {
+    _id: ObjectId("61dab6a5fe12c3f0cacd55fc"),
+    username: 'GoodGuyGreg',
+    comment: 'Hope you got a good deal!',
+    post: ObjectId("61da896cf1e258629fdd6f5f")
+  },
+  {
+    _id: ObjectId("61dab6defe12c3f0cacd55fd"),
+    username: 'GoodGuyGreg',
+    comment: "What's mine is yours!",
+    post: ObjectId("61da896cf1e258629fdd6f60")
+  },
+  {
+    _id: ObjectId("61dab70bfe12c3f0cacd55fe"),
+    username: 'ScumbagSteve',
+    comment: "It still isn't clean",
+    post: ObjectId("61da896cf1e258629fdd6f5c")
+  },
+  {
+    _id: ObjectId("61dab731fe12c3f0cacd55ff"),
+    username: 'ScumbagSteve',
+    comment: 'Denied your PR cause I found a hack',
+    post: ObjectId("61da896cf1e258629fdd6f5e")
+  }
+]
+6.	find all comments that was authored by "GoodGuyGreg"
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.comments.find({username:"GoodGuyGreg"})
+[
+  {
+    _id: ObjectId("61dab6a5fe12c3f0cacd55fc"),
+    username: 'GoodGuyGreg',
+    comment: 'Hope you got a good deal!',
+    post: ObjectId("61da896cf1e258629fdd6f5f")
+  },
+  {
+    _id: ObjectId("61dab6defe12c3f0cacd55fd"),
+    username: 'GoodGuyGreg',
+    comment: "What's mine is yours!",
+    post: ObjectId("61da896cf1e258629fdd6f60")
+  }
+]
+7.	find all comments that was authored by "ScumbagSteve"
+
+Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.comments.find({username:'ScumbagSteve'})
+[
+  {
+    _id: ObjectId("61dab70bfe12c3f0cacd55fe"),
+    username: 'ScumbagSteve',
+    comment: "It still isn't clean",
+    post: ObjectId("61da896cf1e258629fdd6f5c")
+  },
+  {
+    _id: ObjectId("61dab731fe12c3f0cacd55ff"),
+    username: 'ScumbagSteve',
+    comment: 'Denied your PR cause I found a hack',
+    post: ObjectId("61da896cf1e258629fdd6f5e")
+  }
+]
+8.	find all comments belonging to the post "Reports a bug in your code"
+
+Ans- Atlas atlas-gbsmro-shard-0 [primary]  mongodb_practice> db.comments.find({post:ObjectId("61da896cf1e258629fdd6f5e")})
+[
+  {
+    _id: ObjectId("61dab731fe12c3f0cacd55ff"),
+    username: 'ScumbagSteve',
+    comment: 'Denied your PR cause I found a hack',
+    post: ObjectId("61da896cf1e258629fdd6f5e")
+  }
+References: https://docs.mongodb.com/manual/reference/method/db.collection.find/
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+
+
+
+
+
+
+
+
+assignment 2
+
+
+
+
+
+
+Name: Susheel  Kumar
+MongoDB -Aggregation Exercises
+
+Import the zips.json file into your MongoDB. Database name is "population" and collection name is "zipcodes".
+mongoimport --db population --collection zipcodes --file zips.json 
+Ans- C:\Users\Sushekum\mongodb\zip.json
+
+Atlanta Population
+
+1.	use db.zipcodes.find() to filter results to only the results where city is ATLANTA and state is GA.
+Atlas atlas-gbsmro-shard-0 [primary]  Population> db.zipcodes.find({$and:[{city:'ATLANTA'},{state: 'GA'}]})
+[
+  {
+    _id: '30303',
+    city: 'ATLANTA',
+    loc: [ -84.388846, 33.752504 ],
+    pop: 1845,
+    state: 'GA'
+  },
+  {
+    _id: '30305',
+    city: 'ATLANTA',
+    loc: [ -84.385145, 33.831963 ],
+    pop: 19122,
+    state: 'GA'
+  },
+  {
+    _id: '30306',
+    city: 'ATLANTA',
+    loc: [ -84.351418, 33.786027 ],
+    pop: 20081,
+    state: 'GA'
+  },
+  {
+    _id: '30307',
+    city: 'ATLANTA',
+    loc: [ -84.335957, 33.769138 ],
+    pop: 16330,
+    state: 'GA'
+  },
+  {
+    _id: '30308',
+    city: 'ATLANTA',
+    loc: [ -84.375744, 33.771839 ],
+    pop: 8549,
+    state: 'GA'
+  },
+  {
+    _id: '30309',
+    city: 'ATLANTA',
+    loc: [ -84.388338, 33.798407 ],
+    pop: 14766,
+    state: 'GA'
+  },
+  {
+    _id: '30310',
+    city: 'ATLANTA',
+    loc: [ -84.423173, 33.727849 ],
+    pop: 34017,
+    state: 'GA'
+  },
+  {
+    _id: '30311',
+    city: 'ATLANTA',
+    loc: [ -84.470219, 33.722957 ],
+    pop: 34880,
+    state: 'GA'
+  },
+  {
+    _id: '30312',
+    city: 'ATLANTA',
+    loc: [ -84.378125, 33.746749 ],
+    pop: 17683,
+    state: 'GA'
+  },
+  {
+    _id: '30313',
+    city: 'ATLANTA',
+    loc: [ -84.39352, 33.76825 ],
+    pop: 8038,
+    state: 'GA'
+  },
+  {
+    _id: '30314',
+    city: 'ATLANTA',
+    loc: [ -84.425546, 33.756103 ],
+    pop: 26649,
+    state: 'GA'
+  },
+  {
+    _id: '30315',
+    city: 'ATLANTA',
+    loc: [ -84.380771, 33.705062 ],
+    pop: 41061,
+    state: 'GA'
+  },
+  {
+    _id: '30316',
+    city: 'ATLANTA',
+    loc: [ -84.333913, 33.721686 ],
+    pop: 34668,
+    state: 'GA'
+  },
+  {
+    _id: '30317',
+    city: 'ATLANTA',
+    loc: [ -84.31685, 33.749788 ],
+    pop: 16395,
+    state: 'GA'
+  },
+  {
+    _id: '30318',
+    city: 'ATLANTA',
+    loc: [ -84.445432, 33.786454 ],
+    pop: 53894,
+    state: 'GA'
+  },
+  {
+    _id: '30319',
+    city: 'ATLANTA',
+    loc: [ -84.335091, 33.868728 ],
+    pop: 32138,
+    state: 'GA'
+  },
+  {
+    _id: '30324',
+    city: 'ATLANTA',
+    loc: [ -84.354867, 33.820609 ],
+    pop: 15044,
+    state: 'GA'
+  },
+  {
+    _id: '30326',
+    city: 'ATLANTA',
+    loc: [ -84.358232, 33.848168 ],
+    pop: 125,
+    state: 'GA'
+  },
+  {
+    _id: '30327',
+    city: 'ATLANTA',
+    loc: [ -84.419966, 33.862723 ],
+    pop: 18467,
+    state: 'GA'
+  },
+  {
+    _id: '30329',
+    city: 'ATLANTA',
+    loc: [ -84.321402, 33.823555 ],
+    pop: 17013,
+    state: 'GA'
+  }
+]
+2.	use db.zipcodes.aggregate with $match to do the same as above.
+
+
+Atlas atlas-gbsmro-shard-0 [primary]  Population> db.zipcodes.aggregate([{$match:{$and:[{city:'ATLANTA'},{state:'GA'}]}}])
+[
+  {
+    _id: '30303',
+    city: 'ATLANTA',
+    loc: [ -84.388846, 33.752504 ],
+    pop: 1845,
+    state: 'GA'
+  },
+  {
+    _id: '30305',
+    city: 'ATLANTA',
+    loc: [ -84.385145, 33.831963 ],
+    pop: 19122,
+    state: 'GA'
+  },
+  {
+    _id: '30306',
+    city: 'ATLANTA',
+    loc: [ -84.351418, 33.786027 ],
+    pop: 20081,
+    state: 'GA'
+  },
+  {
+    _id: '30307',
+    city: 'ATLANTA',
+    loc: [ -84.335957, 33.769138 ],
+    pop: 16330,
+    state: 'GA'
+  },
+  {
+    _id: '30308',
+    city: 'ATLANTA',
+    loc: [ -84.375744, 33.771839 ],
+    pop: 8549,
+    state: 'GA'
+  },
+  {
+    _id: '30309',
+    city: 'ATLANTA',
+    loc: [ -84.388338, 33.798407 ],
+    pop: 14766,
+    state: 'GA'
+  },
+  {
+    _id: '30310',
+    city: 'ATLANTA',
+    loc: [ -84.423173, 33.727849 ],
+    pop: 34017,
+    state: 'GA'
+  },
+  {
+    _id: '30311',
+    city: 'ATLANTA',
+    loc: [ -84.470219, 33.722957 ],
+    pop: 34880,
+    state: 'GA'
+  },
+  {
+    _id: '30312',
+    city: 'ATLANTA',
+    loc: [ -84.378125, 33.746749 ],
+    pop: 17683,
+    state: 'GA'
+  },
+  {
+    _id: '30313',
+    city: 'ATLANTA',
+    loc: [ -84.39352, 33.76825 ],
+    pop: 8038,
+    state: 'GA'
+  },
+  {
+    _id: '30314',
+    city: 'ATLANTA',
+    loc: [ -84.425546, 33.756103 ],
+    pop: 26649,
+    state: 'GA'
+  },
+  {
+    _id: '30315',
+    city: 'ATLANTA',
+    loc: [ -84.380771, 33.705062 ],
+    pop: 41061,
+    state: 'GA'
+  },
+  {
+    _id: '30316',
+    city: 'ATLANTA',
+    loc: [ -84.333913, 33.721686 ],
+    pop: 34668,
+    state: 'GA'
+  },
+  {
+    _id: '30317',
+    city: 'ATLANTA',
+    loc: [ -84.31685, 33.749788 ],
+    pop: 16395,
+    state: 'GA'
+  },
+  {
+    _id: '30318',
+    city: 'ATLANTA',
+    loc: [ -84.445432, 33.786454 ],
+    pop: 53894,
+    state: 'GA'
+  },
+  {
+    _id: '30319',
+    city: 'ATLANTA',
+    loc: [ -84.335091, 33.868728 ],
+    pop: 32138,
+    state: 'GA'
+  },
+  {
+    _id: '30324',
+    city: 'ATLANTA',
+    loc: [ -84.354867, 33.820609 ],
+    pop: 15044,
+    state: 'GA'
+  },
+  {
+    _id: '30326',
+    city: 'ATLANTA',
+    loc: [ -84.358232, 33.848168 ],
+    pop: 125,
+    state: 'GA'
+  },
+  {
+    _id: '30327',
+    city: 'ATLANTA',
+    loc: [ -84.419966, 33.862723 ],
+    pop: 18467,
+    state: 'GA'
+  },
+  {
+    _id: '30329',
+    city: 'ATLANTA',
+    loc: [ -84.321402, 33.823555 ],
+    pop: 17013,
+    state: 'GA'
+  }
+]
+3.	use $group to count the number of zip codes in Atlanta.
+
+Atlas atlas-gbsmro-shard-0 [primary]  Population>
+[ { ATLANTA: 16584 } ]
+4.	use $group to find the total population in Atlanta.
+Atlas atlas-gbsmro-shard-0 [primary]  Population> db.zipcodes.aggregate([{$group:{_id:'$city', totalpop: {$sum:'$pop'}}},Atlas atlas-gbsmro-shard-0 [primary]  Population>
+[ { _id: 'ATLANTA', totalpop: 630046 } ]
+
+
+
+Populations By State
+
+1.	use aggregate to calculate the total population for each state
+Atlas atlas-gbsmro-shard-0 [primary]  Population> db.zipcodes.aggregate([{$group:{_id:"$state", totalpop:{ $sum: "$pop"}}}]) _id: 'ATLANTA', totalpop: 630046 } ]
+[
+  { _id: 'CT', totalpop: 3287116 },
+  { _id: 'MD', totalpop: 4781379 },
+  { _id: 'DE', totalpop: 666168 },
+  { _id: 'MA', totalpop: 6016425 },
+  { _id: 'NE', totalpop: 1578139 },
+  { _id: 'TN', totalpop: 4876457 },
+  { _id: 'MT', totalpop: 798948 },
+  { _id: 'LA', totalpop: 4217595 },
+  { _id: 'AR', totalpop: 2350725 },
+  { _id: 'ID', totalpop: 1006749 },
+  { _id: 'UT', totalpop: 1722850 },
+  { _id: 'GA', totalpop: 6478216 },
+  { _id: 'AL', totalpop: 4040587 },
+  { _id: 'WI', totalpop: 4891769 },
+  { _id: 'CO', totalpop: 3293755 },
+  { _id: 'NM', totalpop: 1515069 },
+  { _id: 'HI', totalpop: 1108229 },
+  { _id: 'WA', totalpop: 4866692 },
+  { _id: 'AK', totalpop: 544698 },
+  { _id: 'AZ', totalpop: 3665228 }
+]
+Type "it" for more
+2.	sort the results by population, highest first
+Atlas atlas-gbsmro-shard-0 [primary]  Population> db.zipcodes.aggregate([{$group:{_id:"$state", totalpop:{ $sum: "$pop"}}},{$sort: {totalpop:-1}}])
+[
+  { _id: 'CA', totalpop: 29754890 },
+  { _id: 'NY', totalpop: 17990402 },
+  { _id: 'TX', totalpop: 16984601 },
+  { _id: 'FL', totalpop: 12686644 },
+  { _id: 'PA', totalpop: 11881643 },
+  { _id: 'IL', totalpop: 11427576 },
+  { _id: 'OH', totalpop: 10846517 },
+  { _id: 'MI', totalpop: 9295297 },
+  { _id: 'NJ', totalpop: 7730188 },
+  { _id: 'NC', totalpop: 6628637 },
+  { _id: 'GA', totalpop: 6478216 },
+  { _id: 'VA', totalpop: 6181479 },
+  { _id: 'MA', totalpop: 6016425 },
+  { _id: 'IN', totalpop: 5544136 },
+  { _id: 'MO', totalpop: 5110648 },
+  { _id: 'WI', totalpop: 4891769 },
+  { _id: 'TN', totalpop: 4876457 },
+  { _id: 'WA', totalpop: 4866692 },
+  { _id: 'MD', totalpop: 4781379 },
+  { _id: 'MN', totalpop: 4372982 }
+]
+Type "it" for more
+3.	limit the results to just the first 3 results. What are the top 3 states in population?
+Atlas atlas-gbsmro-shard-0 [primary]  Population> db.zipcodes.aggregate([{$group:{_id:"$state", totalpop:{ $sum: "$pop"}}},{$sort: {totalpop:-1}},{$limit:3}])
+[
+  { _id: 'CA', totalpop: 29754890 },
+  { _id: 'NY', totalpop: 17990402 },
+  { _id: 'TX', totalpop: 16984601 }
+]
+
+Populations by City
+
+1.	use aggregate to calculate the total population for each city (you have to use city/state combination). You can use a combination for the _id of the $group: { city: '$city', state: '$state' }
+Atlas atlas-gbsmro-shard-0 [primary]  Population> db.zipcodes.aggregate([{$group: {_id:{state:"$state",city:"$city"},pop:{$sum:"$pop"}}}])
+[
+  { _id: { state: 'OR', city: 'FALL CREEK' }, pop: 1581 },
+  { _id: { state: 'ME', city: 'EASTPORT' }, pop: 2514 },
+  { _id: { state: 'WI', city: 'OMRO' }, pop: 5678 },
+  { _id: { state: 'KS', city: 'BURRTON' }, pop: 1149 },
+  { _id: { state: 'PA', city: 'PEQUEA' }, pop: 1800 },
+  { _id: { state: 'NC', city: 'MOUNT ULLA' }, pop: 683 },
+  { _id: { state: 'KS', city: 'PRINCETON' }, pop: 650 },
+  { _id: { state: 'OR', city: 'SCOTTS MILLS' }, pop: 1326 },
+  { _id: { state: 'IL', city: 'MERRIONETTE PARK' }, pop: 29847 },
+  { _id: { state: 'SC', city: 'PENDLETON' }, pop: 12288 },
+  { _id: { state: 'CO', city: 'BELLVUE' }, pop: 1982 },
+  { _id: { state: 'MN', city: 'FEDERAL DAM' }, pop: 347 },
+  { _id: { state: 'NY', city: 'LEWISTON' }, pop: 10540 },
+  { _id: { state: 'MA', city: 'WINTHROP' }, pop: 18907 },
+  { _id: { state: 'WI', city: 'WILLIAMS BAY' }, pop: 2208 },
+  { _id: { state: 'VT', city: 'COLCHESTER' }, pop: 14731 },
+  { _id: { state: 'NH', city: 'MEREDITH' }, pop: 5959 },
+  { _id: { state: 'GA', city: 'ODUM' }, pop: 2851 },
+  { _id: { state: 'KS', city: 'RUSSELL SPRINGS' }, pop: 243 },
+  { _id: { state: 'OK', city: 'CARNEGIE' }, pop: 3907 }
+]
+Type "it" for more
+2.	sort the results by population, highest first
+
+Atlas atlas-gbsmro-shard-0 [primary]  Population> db.zipcodes.aggregate([{ $group: { _id: { state: "$state", city: "$city" }, pop: { $sum: "$pop" } } }, { $sort:{pop:-1} }])
+[
+  { _id: { state: 'IL', city: 'CHICAGO' }, pop: 2452177 },
+  { _id: { state: 'NY', city: 'BROOKLYN' }, pop: 2300504 },
+  { _id: { state: 'CA', city: 'LOS ANGELES' }, pop: 2102295 },
+  { _id: { state: 'TX', city: 'HOUSTON' }, pop: 2095918 },
+  { _id: { state: 'PA', city: 'PHILADELPHIA' }, pop: 1610956 },
+  { _id: { state: 'NY', city: 'NEW YORK' }, pop: 1476790 },
+  { _id: { state: 'NY', city: 'BRONX' }, pop: 1209548 },
+  { _id: { state: 'CA', city: 'SAN DIEGO' }, pop: 1049298 },
+  { _id: { state: 'MI', city: 'DETROIT' }, pop: 963243 },
+  { _id: { state: 'TX', city: 'DALLAS' }, pop: 940191 },
+  { _id: { state: 'AZ', city: 'PHOENIX' }, pop: 890853 },
+  { _id: { state: 'FL', city: 'MIAMI' }, pop: 825232 },
+  { _id: { state: 'CA', city: 'SAN JOSE' }, pop: 816653 },
+  { _id: { state: 'TX', city: 'SAN ANTONIO' }, pop: 811792 },
+  { _id: { state: 'MD', city: 'BALTIMORE' }, pop: 733081 },
+  { _id: { state: 'CA', city: 'SAN FRANCISCO' }, pop: 723993 },
+  { _id: { state: 'TN', city: 'MEMPHIS' }, pop: 632837 },
+  { _id: { state: 'CA', city: 'SACRAMENTO' }, pop: 628279 },
+  { _id: { state: 'FL', city: 'JACKSONVILLE' }, pop: 610160 },
+  { _id: { state: 'GA', city: 'ATLANTA' }, pop: 609591 }
+]
+Type "it" for more
+3.	limit the results to just the first 3 results. What are the top 3 cities in population?
+Atlas atlas-gbsmro-shard-0 [primary]  Population> db.zipcodes.aggregate([{ $group: { _id: { state: "$state", city: "$city" },pop: { $sum: "$pop" } } }, { $sort:{pop:-1} },{$limit:3}])
+[
+  { _id: { state: 'IL', city: 'CHICAGO' }, pop: 2452177 },
+  { _id: { state: 'NY', city: 'BROOKLYN' }, pop: 2300504 },
+  { _id: { state: 'CA', city: 'LOS ANGELES' }, pop: 2102295 }
+]
+4.	What are the top 3 cities in population in Texas?
+
+
+
+Bonus
+
+1.	Write a query to get the average city population for each state.
+Atlas atlas-gbsmro-shard-0 [primary]  Population> db.zipcodes.aggregate( [{ $group: { _id: { state: "$state", city: "$city" }, pop: { $sum: "$pop" } } },{ $group: { _id: "$_id.state", avgCityPop: { $avg: "$pop" } } }] )
+[
+  { _id: 'OH', avgCityPop: 12700.839578454332 },
+  { _id: 'SC', avgCityPop: 11139.626198083068 },
+  { _id: 'PA', avgCityPop: 8679.067202337472 },
+  { _id: 'LA', avgCityPop: 10465.496277915632 },
+  { _id: 'VA', avgCityPop: 8526.177931034483 },
+  { _id: 'IL', avgCityPop: 9954.334494773519 },
+  { _id: 'NM', avgCityPop: 5872.360465116279 },
+  { _id: 'FL', avgCityPop: 27400.958963282937 },
+  { _id: 'AR', avgCityPop: 4175.355239786856 },
+  { _id: 'ME', avgCityPop: 3006.4901960784314 },
+  { _id: 'IA', avgCityPop: 3123.0821147356583 },
+  { _id: 'WV', avgCityPop: 2771.4775888717154 },
+  { _id: 'NE', avgCityPop: 3034.882692307692 },
+  { _id: 'ND', avgCityPop: 1645.0309278350514 },
+  { _id: 'NC', avgCityPop: 10622.815705128205 },
+  { _id: 'NY', avgCityPop: 13131.680291970803 },
+  { _id: 'HI', avgCityPop: 15831.842857142858 },
+  { _id: 'TX', avgCityPop: 13775.02108678021 },
+  { _id: 'KS', avgCityPop: 3819.884259259259 },
+  { _id: 'AL', avgCityPop: 7907.2152641878665 }
+]
+Type "it" for more
+2.	What are the top 3 states in terms of average city population?
+Atlas atlas-gbsmro-shard-0 [primary]  Population> db.zipcodes.aggregate([{ $group: { _id: { state: "$state", city: "$city" }, pop: { $sum: "$pop" } } }, { $group: { _id: "$_id.state", avgCityPop: { $avg: "$pop" } } },{$sort:{avgCityPop:-1}}, {$limit:3}])
+[
+  { _id: 'DC', avgCityPop: 303450 },
+  { _id: 'CA', avgCityPop: 27756.42723880597 },
+  { _id: 'FL', avgCityPop: 27400.958963282937 }
+
+
+
+
+
+
+
+
+
+
+asiignment 3
+
+
+
+
+
+
+
+
+
+
+
+MongoDB – Complex Queries
+Name-Susheel  Kumar MongoDB Assigment #3
+Mongo DB Exercises - With the Restaurants Data Set
+1.	Download the restaurants.zip file
+
+2.	Unzip the file, you will see restaurants.json file
+3.	Run the mongod server
+4.	Run the following command to import the json file provided. It will load the json file into the mongodb with database name - restaurants, collections name - addresses
+mongoimport --db restaurants --collection addresses --file restaurants.json
+5.	Run mongo shell command
+6.	show databases
+7.	use restaurants
+8.	db.addresses.find() should print entire json data
+9.	Then start working on the following exercises and submit your queries as the answers to the questions
+Query Reference Links and Cheat sheets
+1. https://docs.mongodb.com/manual/crud/
+Exercise Questions
+1.	Write a MongoDB query to display all the documents in the collection restaurants.
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find()
+[
+  {
+    _id: ObjectId("61db1b08dbcc722135b5b287"),
+    address: {
+      building: '1007',
+      coord: [ -73.856077, 40.848447 ],
+      street: 'Morris Park Ave',
+      zipcode: '10462'
+    },
+    
+[
+Type "it" for more
+2.	Write a MongoDB query to display the fields restaurant_id, name, borough and cuisine for all the documents in the collection restaurant.
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find({},{"restaurant_id" : 1,"name":1,"borough":1,"cuisine" :1,"_id":0});
+[
+  {
+    borough: 'Bronx',
+    cuisine: 'Bakery',
+    name: 'Morris Park Bake Shop',
+    restaurant_id: '30075445'
+  },
+]
+Type "it" for more
+3.	Write a MongoDB query to display the fields restaurant_id, name, borough and cuisine, but exclude the field _id for all the documents in the collection restaurant.
+
+
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find({},{"restaurant_id" : 1,"name":1,"borough":1,"cuisine" :1,"_id":0});
+[
+  {
+    borough: 'Bronx',
+    cuisine: 'Bakery',
+    name: 'Morris Park Bake Shop',
+    restaurant_id: '30075445'
+  },
+]
+Type "it" for more
+4.	Write a MongoDB query to display the fields restaurant_id, name, borough and zip code, but exclude the field _id for all the documents in the collection restaurant.
+
+
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find({},{"restaurant_id" : 1,"name":1,"borough":1,"address.zipcode" :1,"_id":0});
+[
+  {
+    address: { zipcode: '10462' },
+    borough: 'Bronx',
+    name: 'Morris Park Bake Shop',
+    restaurant_id: '30075445'
+  },
+]
+Type "it" for more
+ 
+5.	Write a MongoDB query to display the first 5 restaurant which is in the borough Bronx.
+
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find({},{"restaurant_id" : 1,"name":1,"borough":1,"address.zipcode" :1,"_id":0});
+[
+  {
+    address: { zipcode: '10462' },
+    borough: 'Bronx',
+    name: 'Morris Park Bake Shop',
+    restaurant_id: '30075445'
+  },
+6.	Write a MongoDB query to display all the restaurant which is in the borough Bronx.
+
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find({"borough": "Bronx"}).skip(5).limit(5);
+[
+  {
+    _id: ObjectId("61db1b08dbcc722135b5b2c4"),
+    address: {
+      building: '658',
+      coord: [ -73.81363999999999, 40.82941100000001 ],
+      street: 'Clarence Ave',
+      zipcode: '10465'
+    },
+    borough: 'Bronx',
+    cuisine: 'American ',
+    grades:
+7.	Write a MongoDB query to display the next 5 restaurants after skipping first 5 which are in the borough Bronx.
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants>  db.addresses.find({grades : { $elemMatch:{"score":{$gt : 90}}}});
+[
+  {
+    _id: ObjectId("61db1b08dbcc722135b5b3e5"),
+    address: {
+      building: '65',
+      coord: [ -73.9782725, 40.7624022 ],
+      street: 'West   54 Street',
+      zipcode: '10019'
+    },
+8.	Write a MongoDB query to find the restaurants who achieved a score more than 90.
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find({grades : { $elemMatch:{"score":{$gt : 90}}}});
+[
+  {
+    _id: ObjectId("61db1b08dbcc722135b5b3e5"),
+    address: {
+      building: '65',
+      coord: [ -73.9782725, 40.7624022 ],
+      street: 'West   54 Street',
+      zipcode: '10019'
+    },
+    borough: 'Manhattan',
+    cuisine: 'American ',
+    grades:
+9.	Write a MongoDB query to find the restaurants that achieved a score, more than 80 but less than 100.
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find({grades : { $elemMatch:{"score":{$gt : 80 , $lt :100}}}});
+[
+  {
+    _id: ObjectId("61db1b08dbcc722135b5b486"),
+    address: {
+      building: '345',
+      coord: [ -73.9864626, 40.7266739 ],
+      street: 'East 6 Street',
+      zipcode: '10003'
+    },
+    borough: 'Manhattan',
+    cuisine: 'Indian',
+    grades:
+10.	Write a MongoDB query to find the restaurants which locate in latitude value less than -95.754168.
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find({"address.coord" : {$lt : -95.754168}});
+11.	Write a MongoDB query to find the restaurants that do not prepare any cuisine of 'American' and their grade score more than 70 and latitude less than -65.754168.
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find({$and: [{"cuisine" : {$ne :"American "}},{"grades.score": {$gt : 70}},{"address.coord": {$lt : -65.754168}}]});
+12.	Write a MongoDB query to find the restaurants which do not prepare any cuisine of 'American' and achieved a score more than 70 and located in the longitude less than -65.754168.
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find({"cuisine" : {$ne : "American "},"grades.score" :{$g$gt: 70}, "address.coord" :{$lt : -65.754168}});
+13.	Write a MongoDB query to find the restaurants which do not prepare any cuisine of 'American ' and achieved a grade point 'A' not belongs to the borough Brooklyn. The document must be displayed according to the cuisine in descending order.
+
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find( {"cuisine" : {$ne : "American "},"grades.grade" :"A","borough": {$ne : "Brooklyn"}} ).sort({"cuisine":-1});
+14.	Write a MongoDB query to find the restaurant Id, name, borough and cuisine for those restaurants which contain 'Wil' as first three letters for its name.
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find({name: /^Wil/},{"restaurant_id" : 1,"name":1,"borough":1,"cuisine" :1});
+15.	Write a MongoDB query to find the restaurant Id, name, borough and cuisine for those restaurants which contain 'ces' as last three letters for its name.
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find({name: /ces$/},{"restaurant_id" : 1,"name":1,"borough":1,"cuisine" :1});
+16.	Write a MongoDB query to find the restaurant Id, name, borough and cuisine for those restaurants which contain 'Reg' as three letters somewhere in its name.
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find({"name": /.*Reg.*/},{"restaurant_id" : 1,"name":1,"borough":1,"cuisine" :1});
+17.	Write a MongoDB query to find the restaurants which belong to the borough Bronx and prepared either American or Chinese dish.
+
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants>  db.addresses.find({ "borough": "Bronx" , $or : [{ "cuisine" : "American " },{ "cuisine" : "Chinese" }] } ); 
+18.	Write a MongoDB query to find the restaurant Id, name, borough and cuisine for those restaurants which belong to the borough Staten Island or Queens or Bronxor Brooklyn.
+
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants>  db.addresses.find({"borough" :{$in :["Staten Island","Queens","Bronx","Brooklyn"]}},{"restaurant_id" : 1,"name":1,"borough":1,"cuisine" :1});
+19.	Write a MongoDB query to find the restaurant Id, name, borough and cuisine for those restaurants which are not belonging to the borough Staten Island or Queens or Bronxor Brooklyn.
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find({"borough" :{$nin :["Staten Island","Queens","Bronx","Brooklyn"]}},{"restaurant_id" : 1,"name":1,"borough":1,"cuisine" :1});
+20.	Write a MongoDB query to find the restaurant Id, name, borough and cuisine for those restaurants which achieved a score which is not more than 10.
+
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants>  db.addresses.find({"grades.score" : { $not: {$gt : 10}}},{"restaurant_id" : 1,"name":1,"borough":1,"cuisine" :1});
+21.	Write a MongoDB query to find the restaurant Id, name, borough and cuisine for those restaurants which prepared dish except 'American' and 'Chinees' or restaurant's name begins with letter 'Wil'.
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find({$or: [{name: /^Wil/},{"$and": [{"cuisine" : {$ne :"American "}},{"cuisine" : {$ne :"Chinees"}}]}]},{"restaurant_id" : 1,"name":1,"borough":1,"cuisine" :1});
+
+22.	Write a MongoDB query to find the restaurant Id, name, and grades for those restaurants which achieved a grade of "A" and scored 11 on an ISODate "2014-08-11T00:00:00Z" among many of survey dates..
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find( {"grades.date": ISODate("2014-08-11T00:00:00Z"), "grades.grade":"A" , "grades.score" : 11}, {"restaurant_id" : 1,"name":1,"grades":1});
+23.	Write a MongoDB query to find the restaurant Id, name and grades for those restaurants where the 2nd element of grades array contains a grade of "A" and score 9 on an ISODate "2014-08-11T00:00:00Z"
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find({ "grades.1.date": ISODate("2014-08-11T00:00:00Z"), "grades.1.grade":"A" , "grades.1.score" : 9}, {"restaurant_id" : 1,"name":1,"grades":1});
+24.	Write a MongoDB query to find the restaurant Id, name, address and geographical location for those restaurants where 2nd element of coord array contains a value which is more than 42 and upto 52..
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find( { "address.coord.1": {$gt : 42, $lte : 52}},{"restaurant_id" : 1,"name":1,"address":1,"coord":1});
+25.	Write a MongoDB query to arrange the name of the restaurants in ascending order along with all the columns.
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find().sort({"name":1});
+26.	Write a MongoDB query to arrange the name of the restaurants in descending along with all the columns.
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.restaurants.find().sort({"name":-1});db.restaurants.find().sort({"name":-1});
+27.	Write a MongoDB query to arranged the name of the cuisine in ascending order and for that same cuisine borough should be in descending order.
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find().sort({"cuisine":1,"borough" : -1,});
+28.	Write a MongoDB query to know whether all the addresses contains the street or not.
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find({"address.street" : { $exists : true } } );db.addresses.find({"address.street" : { $exists : true } } );
+29.	Write a MongoDB query which will select all documents in the restaurants collection where the coord field value is Double.
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find({"address.coord" : {$type : 1}} );
+30.	Write a MongoDB query which will select the restaurant Id, name and grades for those restaurants which returns 0 as a remainder after dividing the score by 7.
+
+
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find( {"grades.score" : {$mod : [7,0]}},{"restaurant_id" : 1,"name":1,"grades":1}); 
+31.	Write a MongoDB query to find the restaurant name, borough, longitude and attitude and cuisine for those restaurants which contains 'mon' as three letters somewhere in its name.
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find({ name :{ $regex : "mon.*", $options: "i" } },{"name":1,"borough":1, "address.coord":1,"cuisine" :1});
+32.	Write a MongoDB query to find the restaurant name, borough, longitude and latitude and cuisine for those restaurants which contain 'Mad' as first three letters of its name.
+Atlas atlas-gbsmro-shard-0 [primary]  restaurants> db.addresses.find({ name :{ $regex : /^Mad/i, }},{"name":1,"borough":1,"address.coord":1,"cuisine" :1});
+
+
+
+
